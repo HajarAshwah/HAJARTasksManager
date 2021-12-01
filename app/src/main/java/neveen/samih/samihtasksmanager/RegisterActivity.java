@@ -100,12 +100,10 @@ public class RegisterActivity extends AppCompatActivity {
              {
               // dialog
 
-                 Toast.makeText(, "", Toast.LENGTH_SHORT).show();
+                 Toast.makeText(getApplicationContext(), "error create account"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
              }
 
             }
         });
     }
-
-
 }

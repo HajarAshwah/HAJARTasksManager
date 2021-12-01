@@ -21,7 +21,7 @@ public class SpalshScreenActivity extends AppCompatActivity {
                 int ms=3*1000;//milliseconds
                 try {
                     sleep(ms);
-                    startActivity(new Intent(getApplicationContext(),MainTasksActivity.class));
+                    startActivity(new Intent(getApplicationContext(),RegisterActivity.class));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
