@@ -15,6 +15,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private TextInputEditText etEmail,etPassword, etRePassword,etFullname,etPhone;
@@ -27,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
         etPassword=findViewById(R.id.etPassword);
         etRePassword=findViewById(R.id.etRePassword);
         etFullname=findViewById(R.id.etName);
-        btnSave=findViewById(R.id.btnSave);
+        btnSave=findViewById(R.id.btnRegisterActivity);
         etPhone=findViewById(R.id.etPhone);
 
 
@@ -91,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
             // response handler
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-             if(task.isCanceled())//== true
+             if(task.isSuccessful())//== true
              {
               finish();
               startActivity(new Intent(getApplicationContext(),MainTasksActivity.class));
@@ -100,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
              {
               // dialog
 
-                 Toast.makeText(getApplicationContext(), "error create account"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                 Toast.makeText(getApplicationContext(), "error create account"+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
              }
 
             }
