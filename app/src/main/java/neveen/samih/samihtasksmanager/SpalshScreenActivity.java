@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SpalshScreenActivity extends AppCompatActivity {
 
     @Override
@@ -21,7 +23,14 @@ public class SpalshScreenActivity extends AppCompatActivity {
                 int ms=3*1000;//milliseconds
                 try {
                     sleep(ms);
-                    startActivity(new Intent(getApplicationContext(),RegisterActivity.class));
+                    //فحص هل تم الدخول مسبقاً
+                    FirebaseAuth auth=FirebaseAuth.getInstance();
+                    if (auth.getCurrentUser()!=null)
+                    startActivity(new Intent(getApplicationContext(),MainTasksActivity.class));
+                    else
+                        startActivity(new Intent(getApplicationContext(),SignInActivity.class));
+
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

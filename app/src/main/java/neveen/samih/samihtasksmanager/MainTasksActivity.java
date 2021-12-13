@@ -12,7 +12,9 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-                                                      // listener 1.
+import com.google.firebase.auth.FirebaseAuth;
+
+// listener 1.
 public class MainTasksActivity extends AppCompatActivity implements DialogInterface.OnClickListener {
 ///lkjhhkhjk
     @Override
@@ -71,6 +73,10 @@ public class MainTasksActivity extends AppCompatActivity implements DialogInterf
 
             Toast.makeText(getApplicationContext(), "loging out", Toast.LENGTH_SHORT).show();
             dialogInterface.cancel();
+            //لتسجيل الخروج
+            FirebaseAuth auth=FirebaseAuth.getInstance();
+            auth.signOut();
+
             finish();//to close current activity
         }
         if(which==dialogInterface.BUTTON_NEGATIVE)
