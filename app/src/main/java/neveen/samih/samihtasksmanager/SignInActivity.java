@@ -51,7 +51,7 @@ public class SignInActivity extends AppCompatActivity {
                 boolean isOk=true;
                 String email=etEmail.getText().toString();
                 String password=etPassword.getText().toString();
-                if(email.length()==)
+                if(email.length()==0)
                 {
                     etEmail.setError("enter email");
                 }
