@@ -23,6 +23,7 @@ public class SpalshScreenActivity extends AppCompatActivity {
                 int ms=3*1000;//milliseconds
                 try {
                     sleep(ms);
+                    finish();
                     //فحص هل تم الدخول مسبقاً
                     FirebaseAuth auth=FirebaseAuth.getInstance();
                     if (auth.getCurrentUser()!=null)
