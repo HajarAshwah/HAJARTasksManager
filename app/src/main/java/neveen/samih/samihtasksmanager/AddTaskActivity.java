@@ -12,7 +12,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import MyData.MyTask;
 
 public class AddTaskActivity extends AppCompatActivity {
 
@@ -60,8 +66,33 @@ public class AddTaskActivity extends AppCompatActivity {
         }
         if (isOk)
         {
+            MyTask myTask=new MyTask();
+            myTask.setTitle(title);
+            myTask.setSubject(subject);
+            myTask.setNecessity(progress);
 
+            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            myTask.setOwner(uid);
+
+            FirebaseAuth db= FirebaseDatabase.getInstance();
+            DatabaseReference ref = db.getReference();
+            String key = ref.child("mytasks").push().getKey();
+            myTask.setKey(key);
+
+            ref.child("mytasks").child(key).setValue(myTask).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {//response
+                    if(task.isSuccessful())
+                    {
+                        Toast.makeText(getApplicationContext(), "Add Successful", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "Add Not Successful", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
-
     }
 }
