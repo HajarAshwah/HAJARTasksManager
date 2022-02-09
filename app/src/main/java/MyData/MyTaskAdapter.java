@@ -1,6 +1,7 @@
 package MyData;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -10,7 +11,7 @@ import androidx.annotation.Nullable;
 
 import neveen.samih.samihtasksmanager.R;
 
-public class MyTaskAdapter extends ArrayAdapter
+public class MyTaskAdapter extends ArrayAdapter<MyTask>
 {
 
     public MyTaskAdapter(@NonNull Context context, int resource) {
@@ -20,7 +21,9 @@ public class MyTaskAdapter extends ArrayAdapter
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View v= android.view.View.inflate(getContext(), R.layout.task_item_layout,parent);
+      //  View v= android.view.View.inflate(getContext(), R.layout.task_item_layout,parent);
+        //ناء واجهة لمعطى واحد
+        View v= LayoutInflater.from(getContext()).inflate(R.layout.task_item_layout,parent,false);
         return v;
     }
 }
