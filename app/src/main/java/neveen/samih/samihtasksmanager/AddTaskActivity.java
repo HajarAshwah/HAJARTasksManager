@@ -1,5 +1,6 @@
 package neveen.samih.samihtasksmanager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -10,9 +11,11 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -74,7 +77,8 @@ public class AddTaskActivity extends AppCompatActivity {
             String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
             myTask.setOwner(uid);
 
-            FirebaseAuth db= FirebaseDatabase.getInstance();
+            FirebaseDatabase db = FirebaseDatabase.getInstance();
+            FirebaseDatabase.getInstance();
             DatabaseReference ref = db.getReference();
             String key = ref.child("mytasks").push().getKey();
             myTask.setKey(key);
