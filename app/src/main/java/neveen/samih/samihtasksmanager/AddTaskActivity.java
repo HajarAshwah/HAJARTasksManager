@@ -60,7 +60,7 @@ public class AddTaskActivity extends AppCompatActivity {
         String title =etTitle.getText().toString();
         String subject =etSubject.getText().toString();
         int progress = skbNecessity.getProgress();
-        String importance = spnrImprotance.getSelectedItem().toString();
+        //String importance = spnrImprotance.getSelectedItem().toString();
         boolean isOk=true;
         if (title.length()==0)
         {

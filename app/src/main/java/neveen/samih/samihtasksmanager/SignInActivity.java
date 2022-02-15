@@ -82,8 +82,5 @@ public class SignInActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "signing in error"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
     }
 }
