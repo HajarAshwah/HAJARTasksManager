@@ -10,19 +10,38 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 
+import MyData.MyTaskAdapter;
+
 // listener 1.
 public class MainTasksActivity extends AppCompatActivity implements DialogInterface.OnClickListener {
 ///lkjhhkhjk
     FloatingActionButton fabAdd;
+    // read data 1
+    private ListView lstv;
+    private MyTaskAdapter taskAdapter;
+     // تحديد الواجهة وبناء الكائنات المعروضة على الشاشة - وظيفة الدالة
+    // تجهيز الكائنات ومؤشراتها قبل العرض على الشاشة
+    // تعمل مرة واحدة فقط عند بناء الشاشة
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // هون بتبلش
         setContentView(R.layout.activity_main);
+        // read data 2
+        // وظيفة فايندفيو باي اي دي تعيد مؤشر لكائن تم بناؤه على واجهة المستعمل التي ستعرض
+        lstv=findViewById(R.id.lstvAllTasks);
+        taskAdapter=new MyTaskAdapter(this,R.layout.task_item_layout);
+        // read data 3 : set adapter to list view (connect the data to list view)
+        lstv.setAdapter(taskAdapter);
+
+
+
         fabAdd=findViewById(R.id.fabAdd);
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
