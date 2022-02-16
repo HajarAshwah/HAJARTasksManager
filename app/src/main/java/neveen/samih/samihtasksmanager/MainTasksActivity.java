@@ -15,6 +15,11 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import MyData.MyTaskAdapter;
 
@@ -50,10 +55,40 @@ public class MainTasksActivity extends AppCompatActivity implements DialogInterf
             }
         });
     }
-
+// read 4
     //1. build menu xml
     //2. to add menu (3 point right-top corner) to the current activity
     @Override
+    protected void onResume(){
+        super.onResume();
+        readDataFromFireBase("");
+    }
+// read 5:
+
+    /**
+     * read tasks from firebase
+     * s - is text to search , if it is empty the method show all results
+     * @param s
+     */
+    private void readDataFromFireBase(String s)
+    {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        String uid = FirebaseAuth.getInstance().getUid();// current user id
+
+        ref.child("mytasks").child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
     public boolean onCreateOptionsMenu(Menu menu) {
                                  //the xml menu file
         getMenuInflater().inflate(R.menu.main_menu,menu);
