@@ -83,7 +83,9 @@ public class AddTaskActivity extends AppCompatActivity {
             String key = ref.child("mytasks").push().getKey();
             myTask.setKey(key);
 
-            ref.child("mytasks").child(key).setValue(myTask).addOnCompleteListener(new OnCompleteListener<Void>() {
+            // add tasks to current user
+            // just this user can see/read this tasks
+            ref.child("mytasks").child(uid).child(key).setValue(myTask).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {//response
                     if(task.isSuccessful())
