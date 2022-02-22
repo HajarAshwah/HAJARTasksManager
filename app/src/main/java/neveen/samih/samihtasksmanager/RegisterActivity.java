@@ -101,7 +101,6 @@ public class RegisterActivity extends AppCompatActivity {
              else
              {
               // dialog
-
                  Toast.makeText(getApplicationContext(), "error create account"+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
              }
 
